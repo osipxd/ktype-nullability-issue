@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+
 plugins {
     alias(libs.plugins.kotlin.jvm)
 }
@@ -14,6 +16,13 @@ testing {
             // Use Kotlin Test test framework
             useKotlinTest(libs.versions.kotlin.get())
         }
+    }
+}
+
+tasks.withType<Test>().configureEach {
+    testLogging {
+        showStandardStreams = true
+        exceptionFormat = FULL
     }
 }
 
